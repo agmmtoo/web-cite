@@ -22,14 +22,14 @@ export default function Login() {
       },
     })
     setSubmitting(false)
-    setSuccess(!!user)
+    setSuccess(true)
   }
 
   return (
     <div className='grid place-items-center w-screen h-screen'>
       <div className='w-4/5 max-w-lg p-8 bg-white rounded shadow-sm focus-within:shadow'>
         {success ? (
-          <div className='text-green-500 font-medium text-sm'>Check your email for a magic link.</div>
+          <div className='text-green-500 font-medium text-center'>Check your email for a magic link.</div>
         ) : (
           <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
             {({ isSubmitting }) => (

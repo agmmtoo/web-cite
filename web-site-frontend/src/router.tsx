@@ -3,6 +3,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import App from './App'
 import Notes from './pages/Notes'
 import Profile from './pages/Profile'
+import Auth from './pages/auth'
 import Login from './pages/auth/Login'
 import Register from './pages/auth/Register'
 import About from './pages/About'
@@ -30,6 +31,7 @@ export const router = createBrowserRouter([
   },
   {
     path: '/auth',
+    element: <Auth />,
     children: [
       {
         path: 'login',
