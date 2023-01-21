@@ -20,5 +20,5 @@ export default function useLocalStorage<T>(key: string, initialValue: T | null) 
     }
   }
 
-  return [storedValue, setValue]
+  return [storedValue, setValue] as [T, (value: T) => void]
 }
