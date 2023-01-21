@@ -8,12 +8,15 @@ import { SB_LOCAL_STORAGE_KEY } from '../constants/supabase.constants'
 
 import { Session } from '@supabase/supabase-js'
 
-export const SessionContext = createContext(null)
+export const SessionContext = createContext({
+  session: null as Session | null,
+  setSession: (session: Session) => {},
+})
 
 export const useSession = () => useContext(SessionContext)
 
 export default function SessionProvider({ children }: { children: React.ReactNode }) {
-  const [storedSession, _] = useLocalStorage(SB_LOCAL_STORAGE_KEY, null)
+  const [storedSession, _] = useLocalStorage<Session>(SB_LOCAL_STORAGE_KEY, null)
   const [session, setSession] = useState<Session | null>(storedSession)
 
   useEffect(() => {
