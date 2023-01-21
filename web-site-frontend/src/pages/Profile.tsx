@@ -4,7 +4,9 @@ import { getUser } from '../api/user.api'
 
 function Profile() {
   const { session } = useSession()
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState({ id: '' })
+
+  if (!session) return <div>Not signed in</div>
 
   useEffect(() => {
     getUser(session.user.id).then(setUser)
