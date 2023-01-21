@@ -1,20 +1,19 @@
-import { useEffect } from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, Navigate } from 'react-router-dom'
 
-import { getNotes } from './api/notes.api'
+import { useSession } from './context/SessionContext'
+
+import Nav from './components/Nav'
 
 function App() {
-  useEffect(() => {
-    getNotes().then((res) => {
-      console.log(res)
-    })
-  }, [])
-  return (
-    <>
-      <div></div>
-      <Outlet />
-    </>
-  )
+    const { session } = useSession()
+
+    if (!session) return <Navigate to='/auth/login' />
+    return (
+        <>
+            <Nav />
+            <Outlet />
+        </>
+    )
 }
 
 export default App

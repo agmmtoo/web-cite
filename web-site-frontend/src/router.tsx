@@ -1,6 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom'
 
 import App from './App'
+import Notes from './pages/Notes'
+import Profile from './pages/Profile'
 import Login from './pages/auth/Login'
 import Register from './pages/auth/Register'
 import About from './pages/About'
@@ -12,11 +14,19 @@ export const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: 'about',
-        element: <About />,
+        element: <Notes />,
+        index: true,
       },
+      {
+        path: 'me',
+        element: <Profile />,
+      }
     ],
     errorElement: <NotFound />,
+  },
+  {
+    path: 'about',
+    element: <About />,
   },
   {
     path: '/auth',
