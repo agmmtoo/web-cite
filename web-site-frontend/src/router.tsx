@@ -20,7 +20,7 @@ export const router = createBrowserRouter([
       {
         path: 'me',
         element: <Profile />,
-      }
+      },
     ],
     errorElement: <NotFound />,
   },

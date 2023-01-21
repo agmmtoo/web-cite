@@ -1,8 +1,8 @@
 import supabase from './supabase.api'
 
 type params = {
-    email: string,
-    options?: any,
+    email: string
+    options?: any
 }
 
 export async function signInWithOtp({ email, options }: params) {
@@ -11,7 +11,9 @@ export async function signInWithOtp({ email, options }: params) {
         options,
     })
 
-    return { data, error }
+    if (error) throw error
+
+    return data
 }
 
 export async function getSession() {
