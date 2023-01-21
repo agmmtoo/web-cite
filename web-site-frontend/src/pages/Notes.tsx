@@ -13,7 +13,6 @@ function Notes() {
 
   useEffect(() => {
     getNotes(id).then((res) => {
-      console.log(res)
       setNotes(res)
     })
   }, [])
