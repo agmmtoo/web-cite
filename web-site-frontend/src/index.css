@@ -1,5 +1,9 @@
 @tailwind base;
 
+:root {
+    font-size: 14px;
+}
+
 @layer base {
     body {
         @apply bg-gray-100 text-gray-900;

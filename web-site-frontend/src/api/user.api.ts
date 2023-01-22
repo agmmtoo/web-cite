@@ -5,3 +5,9 @@ export const getUser = async (id: string) => {
   if (error) throw error
   return data
 }
+
+export const getProfile = async () => {
+  const { data, error } = await superbase.auth.getUser()
+  if (error) throw error
+  return data.user
+}

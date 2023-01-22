@@ -1,16 +1,14 @@
 import { useState, useEffect } from 'react'
-import { useSession } from '../context/SessionContext'
-import { getUser } from '../api/user.api'
+import { getProfile } from '../api/user.api'
 
 function Profile() {
-  const { session } = useSession()
   const [user, setUser] = useState({ id: '' })
 
-  if (!session) return <div>Not signed in</div>
-
   useEffect(() => {
-    getUser(session.user.id).then(setUser)
-  }, [session])
+    getProfile().then((res) => {
+      setUser(res)
+    })
+  }, [])
 
   return <div>{user && <small>{user.id}</small>}</div>
 }

@@ -21,6 +21,7 @@ export default function Login() {
         emailRedirectTo: `${BASE_URL}/auth`,
       },
     })
+    console.log(user)
     setSubmitting(false)
     setSuccess(true)
   }
