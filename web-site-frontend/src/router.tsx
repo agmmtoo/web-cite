@@ -8,6 +8,7 @@ import Login from './pages/auth/Login'
 import Register from './pages/auth/Register'
 import About from './pages/About'
 import NotFound from './pages/NotFound'
+import NewNote from './components/NewNote'
 
 export const router = createBrowserRouter([
   {
@@ -15,8 +16,14 @@ export const router = createBrowserRouter([
     element: <App />,
     children: [
       {
+        path: '/',
         element: <Notes />,
-        index: true,
+        children: [
+          {
+            path: 'new',
+            element: <NewNote />,
+          },
+        ],
       },
       {
         path: 'me',

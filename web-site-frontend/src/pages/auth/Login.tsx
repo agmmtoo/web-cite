@@ -22,6 +22,7 @@ export default function Login() {
       },
     })
     console.log(user)
+    alert(JSON.stringify(user))
     setSubmitting(false)
     setSuccess(true)
   }
