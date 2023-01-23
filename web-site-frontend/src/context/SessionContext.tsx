@@ -9,13 +9,13 @@ import { SB_LOCAL_STORAGE_KEY } from '../constants/supabase.constants'
 import { Session } from '@supabase/supabase-js'
 
 interface SessionContext {
-  session: Session | null,
+  session: Session | null
   setSession: (session: Session | null) => void
 }
 
 export const SessionContext = createContext<SessionContext>({
   session: null,
-  setSession: () => { }
+  setSession: () => {},
 })
 
 export const useSession = () => useContext(SessionContext)

@@ -1,6 +1,6 @@
 import { Children, cloneElement } from 'react'
 
-export default function IconButton({ children, onClick=null, className='', ...props }) {
+export default function IconButton({ children, onClick = null, className = '', ...props }) {
   return (
     <button className='bg-inherit focus:outline-none' onClick={onClick} {...props}>
       {Children.map(children, (child) =>

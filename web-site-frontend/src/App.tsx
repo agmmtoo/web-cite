@@ -5,15 +5,15 @@ import { useSession } from './context/SessionContext'
 import Nav from './components/Nav'
 
 function App() {
-    const { session } = useSession()
+  const { session } = useSession()
 
-    if (!session) return <Navigate to='/auth/login' />
-    return (
-        <>
-            <Nav />
-            <Outlet />
-        </>
-    )
+  if (!session) return <Navigate to='/auth/login' />
+  return (
+    <>
+      <Nav />
+      <Outlet />
+    </>
+  )
 }
 
 export default App

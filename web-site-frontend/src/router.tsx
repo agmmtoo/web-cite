@@ -30,7 +30,7 @@ export const router = createBrowserRouter([
             path: ':key',
             element: <EditNote />,
             loader: noteLoader,
-          }
+          },
         ],
       },
       {
