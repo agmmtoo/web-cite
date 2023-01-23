@@ -11,3 +11,11 @@ export const createNote = async ({ userId, title, content }) => {
   if (error) throw error
   return data
 }
+
+export const getNote = async ({ getBy, value, signal }) => {
+  const { data, error } = await supabase.from('notes').select().eq(getBy, value).abortSignal(signal).single()
+  if (error) throw error
+  return data
+}
+
+export const getNoteByKey = async (key: string, signal) => await getNote({ getBy: 'key', value: key, signal })

@@ -4,6 +4,7 @@ import { useNavigate, Outlet } from 'react-router-dom'
 import { getNotes } from '../api/notes.api'
 import { useSession } from '../context/SessionContext'
 import { useClipboard } from '../hooks/useClipboard'
+import Note from '../components/Note'
 
 function Notes() {
   const {
@@ -46,11 +47,12 @@ function Notes() {
           <button onClick={handleNewNote}>New Note</button>
         </li>
         {notes?.map((note) => (
-          <li key={note.id} className='card p-4 break-words cursor-pointer' onClick={() => handleNoteClick(note)}>
-            {note.key}
-            {note.title}
-            {note.content}
-          </li>
+          // <li key={note.id} className='card p-4 break-words cursor-pointer' onClick={() => handleNoteClick(note)}>
+          //   {note.key}
+          //   {note.title}
+          //   {note.content}
+          // </li>
+          <Note key={note.id} note={note} />
         ))}
       </ul>
       <Outlet />

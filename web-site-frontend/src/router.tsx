@@ -9,6 +9,9 @@ import Register from './pages/auth/Register'
 import About from './pages/About'
 import NotFound from './pages/NotFound'
 import NewNote from './components/NewNote'
+import EditNote from './components/EditNote'
+
+import { noteLoader } from './helpers/dataLoaders'
 
 export const router = createBrowserRouter([
   {
@@ -25,7 +28,8 @@ export const router = createBrowserRouter([
           },
           {
             path: ':key',
-            element: <NewNote />,
+            element: <EditNote />,
+            loader: noteLoader,
           }
         ],
       },
