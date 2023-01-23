@@ -47,11 +47,6 @@ function Notes() {
           <button onClick={handleNewNote}>New Note</button>
         </li>
         {notes?.map((note) => (
-          // <li key={note.id} className='card p-4 break-words cursor-pointer' onClick={() => handleNoteClick(note)}>
-          //   {note.key}
-          //   {note.title}
-          //   {note.content}
-          // </li>
           <Note key={note.id} note={note} />
         ))}
       </ul>

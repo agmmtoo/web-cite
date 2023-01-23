@@ -6,9 +6,9 @@ export default function Note({ note }) {
   return (
     <Link
       to={`${note.key}`}
-      className={classNames('hover:shadow shadow-green-400 card p-4 break-words transition', isActive ? 'shadow' : '')}
+      className={classNames('leading-relaxed tracking-wide hover:shadow shadow-green-400 card p-4 break-words transition', isActive ? 'shadow' : '')}
     >
-      <h4>{note.title}</h4>
+      <h4 className='font-medium'>{note.title}</h4>
       <small>{note.url}</small>
       <p>{note.content}</p>
     </Link>

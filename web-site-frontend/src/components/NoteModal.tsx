@@ -25,6 +25,14 @@ export default function NoteModal({
     // IMPROVE: render on every change
     elem.style.height = elem.scrollHeight + 'px'
   }
+  const cancelButtonRef = useRef<HTMLButtonElement>(null)
+  useLayoutEffect(() => {
+    const escapeEvent = ({ key }) => {
+      if (key === 'Escape') goBack()
+    }
+    document.addEventListener('keydown', escapeEvent)
+    return () => document.removeEventListener('keydown', escapeEvent)
+  }, [])
 
   // form stuff
   const validationSchema = Yup.object({
@@ -56,7 +64,7 @@ export default function NoteModal({
             <ErrorMessage name='content' component='div' className='text-red-500 font-medium text-sm' />
 
             <div className='flex gap-2 justify-between items-center'>
-              <IconButton type='reset' onClick={goBack}>
+              <IconButton type='reset' onClick={goBack} ref={cancelButtonRef}>
                 <XMarkIcon className='hover:text-red-600' />
               </IconButton>
               {children}
