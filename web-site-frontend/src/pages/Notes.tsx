@@ -32,21 +32,29 @@ function Notes() {
   const handleNewNote = () => {
     navigate('/new')
   }
+  const handleNoteClick = (note) => {
+    navigate(`/${note.key}`)
+  }
 
   return (
-    <>
-    <button onClick={handleNewNote}>New Note</button>
-    <ul>
-      {notes?.map((note) => (
-        <li key={note.id}>
-          {note.key}
-          {note.title}
-          {note.content}
+    <div className='p-4'>
+      <ul
+        className='grid gap-4'
+        style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(20rem, 1fr))', gridAutoRows: 'minmax(5rem, auto)' }}
+      >
+        <li className='sticky top-14 bg-gray-100 card p-4 break-words cursor-pointer' onClick={handleNewNote}>
+          <button onClick={handleNewNote}>New Note</button>
         </li>
-      ))}
-    </ul>
-    <Outlet />
-    </>
+        {notes?.map((note) => (
+          <li key={note.id} className='card p-4 break-words cursor-pointer' onClick={() => handleNoteClick(note)}>
+            {note.key}
+            {note.title}
+            {note.content}
+          </li>
+        ))}
+      </ul>
+      <Outlet />
+    </div>
   )
 }
 

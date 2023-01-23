@@ -23,6 +23,10 @@ export const router = createBrowserRouter([
             path: 'new',
             element: <NewNote />,
           },
+          {
+            path: ':key',
+            element: <NewNote />,
+          }
         ],
       },
       {

@@ -42,7 +42,7 @@
     }
 
     .card {
-        @apply rounded-md border border-white shadow-md;
+        @apply rounded-md border border-white p-4;
     }
 
 }
