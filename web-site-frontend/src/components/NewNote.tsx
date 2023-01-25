@@ -1,4 +1,3 @@
-import { useRef, useLayoutEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useSession } from '../context/SessionContext'
@@ -6,15 +5,6 @@ import { createNote } from '../api/notes.api'
 import NoteModal from './NoteModal'
 
 export default function NewNote() {
-  const inputRef = useRef<HTMLTextAreaElement>(null)
-  useLayoutEffect(() => {
-    inputRef.current?.focus()
-  }, [])
-  const setHeight = () => {
-    const elem = inputRef.current
-    // IMPROVE: render on every change
-    elem.style.height = elem.scrollHeight + 'px'
-  }
   const navigate = useNavigate()
   const goBack = () => navigate('..')
 

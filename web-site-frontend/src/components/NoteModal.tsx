@@ -1,4 +1,4 @@
-import { useRef, useLayoutEffect, ChangeEvent } from 'react'
+import { useRef, useLayoutEffect, useEffect, ChangeEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
@@ -18,15 +18,15 @@ export default function NoteModal({
 }) {
   const inputRef = useRef<HTMLTextAreaElement>(null)
   useLayoutEffect(() => {
-    inputRef.current?.focus()
+    setHeight()
   }, [])
   const setHeight = () => {
     const elem = inputRef.current
     // IMPROVE: render on every change
-    elem.style.height = elem.scrollHeight + 'px'
+    if (elem) elem.style.height = elem.scrollHeight + 'px'
   }
   const cancelButtonRef = useRef<HTMLButtonElement>(null)
-  useLayoutEffect(() => {
+  useEffect(() => {
     const escapeEvent = ({ key }) => {
       if (key === 'Escape') goBack()
     }
@@ -64,7 +64,7 @@ export default function NoteModal({
             <ErrorMessage name='content' component='div' className='text-red-500 font-medium text-sm' />
 
             <div className='flex gap-2 justify-between items-center'>
-              <IconButton type='reset' onClick={goBack} ref={cancelButtonRef}>
+              <IconButton type='reset' onClick={goBack} btnRef={cancelButtonRef}>
                 <XMarkIcon className='hover:text-red-600' />
               </IconButton>
               {children}
