@@ -43,7 +43,7 @@ function Notes() {
         className='grid gap-4'
         style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(20rem, 1fr))', gridAutoRows: 'minmax(5rem, auto)' }}
       >
-        <li className='sticky top-14 bg-gray-100 card p-4 break-words cursor-pointer' onClick={handleNewNote}>
+        <li className='card p-4 break-words cursor-pointer' onClick={handleNewNote}>
           <button onClick={handleNewNote}>New Note</button>
         </li>
         {notes?.map((note) => (
