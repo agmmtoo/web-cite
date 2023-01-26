@@ -20,12 +20,13 @@ export default function NewNote() {
       user: { id },
     },
   } = useSession()
-  const handleSubmit = async ({ content, title }, { setSubmitting }) => {
+  const handleSubmit = async ({ content, title, url }, { setSubmitting }) => {
     setSubmitting(true)
     createNote({
       userId: id,
       content: content,
       title: title,
+      url,
     })
       .then(console.log)
       .catch(console.warn)
