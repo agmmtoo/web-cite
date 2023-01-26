@@ -1,9 +1,10 @@
-import { useRef, useLayoutEffect, useEffect, ChangeEvent } from 'react'
+import { useRef, useLayoutEffect, ChangeEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Formik, Form, Field, ErrorMessage } from 'formik'
+import { Formik, Form, Field, ErrorMessage, FormikProps } from 'formik'
 import * as Yup from 'yup'
 import { CheckIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Modal, Input, IconButton } from './common/'
+import { Note } from '../types/notes.types'
 
 export default function NoteModal({
   initialValues = {
@@ -15,8 +16,15 @@ export default function NoteModal({
   onClose,
   onSubmit,
   children,
+  // clicking outside triggers onSubmit?
+  submitOnClose = false,
 }) {
+  // dom refs
   const inputRef = useRef<HTMLTextAreaElement>(null)
+  const formRef = useRef<FormikProps<Note>>(null)
+  const cancelButtonRef = useRef<HTMLButtonElement>(null)
+  
+  // effect to set the height of the textarea
   useLayoutEffect(() => {
     setHeight()
   }, [])
@@ -25,10 +33,11 @@ export default function NoteModal({
     // IMPROVE: render on every change
     if (elem) elem.style.height = elem.scrollHeight + 'px'
   }
-  const cancelButtonRef = useRef<HTMLButtonElement>(null)
-  useEffect(() => {
+
+  // close on escape key press
+  useLayoutEffect(() => {
     const escapeEvent = ({ key }) => {
-      if (key === 'Escape') goBack()
+      if (key === 'Escape') cancelButtonRef.current.click()
     }
     document.addEventListener('keydown', escapeEvent)
     return () => document.removeEventListener('keydown', escapeEvent)
@@ -43,8 +52,8 @@ export default function NoteModal({
   const goBack = () => navigate('..')
 
   return (
-    <Modal open={open} onClose={onClose}>
-      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
+    <Modal open={open} onClose={submitOnClose ? () => onSubmit(formRef.current.values) : onClose}>
+      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit} innerRef={formRef}>
         {({ handleChange }) => (
           <Form className='flex flex-col gap-4'>
             <Field name='title' as={Input} placeholder='Title' />
