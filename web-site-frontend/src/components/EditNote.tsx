@@ -11,7 +11,7 @@ export default function EditNote() {
   const navigate = useNavigate()
   const goBack = () => navigate('..')
   const handleClose = (note) => {
-    updateNote({ key: note.key, note }).then(console.log).finally(goBack)
+    updateNote({ key: note.key, note }).finally(goBack)
   }
   return (
     <NoteModal open={true} onClose={handleClose} onSubmit={handleClose} initialValues={note} submitOnClose={true}>
