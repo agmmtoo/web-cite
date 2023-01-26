@@ -17,7 +17,6 @@ function Notes() {
   useEffect(() => {
     getNotes(id).then((res) => {
       setNotes(res)
-      console.log(res)
     })
   }, [])
 
