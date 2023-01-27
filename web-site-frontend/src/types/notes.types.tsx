@@ -1,4 +1,4 @@
-export interface Note {
+export type Note = {
   id: number
   key: number
   title: string

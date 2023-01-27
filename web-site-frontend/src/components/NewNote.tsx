@@ -28,7 +28,6 @@ export default function NewNote() {
       title: title,
       url,
     })
-      .then(console.log)
       .catch(console.warn)
       .finally(() => setSubmitting(false))
     goBack()
