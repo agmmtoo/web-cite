@@ -18,10 +18,9 @@ export default function Login() {
     const { user } = await signInWithOtp({
       email,
       options: {
-        emailRedirectTo: `${BASE_URL}/auth`,
+        emailRedirectTo: `${BASE_URL}`,
       },
     })
-    console.log(user)
     alert(JSON.stringify(user))
     setSubmitting(false)
     setSuccess(true)

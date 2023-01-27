@@ -40,7 +40,7 @@ export const updateNote = async ({ key, note }) => {
   return data
 }
 
-export const deleteNote = async (key: string) => {
+export const deleteNote = async (key: Number) => {
   const { error } = await supabase.from('notes').delete().eq('key', key)
   if (error) throw error
 }

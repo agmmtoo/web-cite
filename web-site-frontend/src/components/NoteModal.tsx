@@ -13,6 +13,7 @@ export default function NoteModal({
     content: '',
   },
   open,
+  // never really used
   onClose,
   onSubmit,
   children,
@@ -53,6 +54,7 @@ export default function NoteModal({
 
   // handle form close
   const handleClose = () => {
+    // if form is edited, submit it
     const isEdited = formRef.current.values !== initialValues
     if (submitOnClose && isEdited ) {
       onSubmit(formRef.current.values)
