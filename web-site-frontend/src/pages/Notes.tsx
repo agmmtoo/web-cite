@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate, Outlet } from 'react-router-dom'
+import { useNavigate, Outlet, Link } from 'react-router-dom'
 
 import { getNotes } from '../api/notes.api'
 import { useSession } from '../context/SessionContext'
@@ -29,22 +29,14 @@ function Notes() {
   // }, [data])
 
   const navigate = useNavigate()
-  const handleNewNote = () => {
-    navigate('/new')
-  }
-  const handleNoteClick = (note) => {
-    navigate(`/${note.key}`)
-  }
 
   return (
     <div className='p-4'>
       <ul
-        className='grid gap-4'
-        style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(20rem, 1fr))', gridAutoRows: 'minmax(5rem, auto)' }}
+        className='grid gap-4 grid-flow-row-dense'
+        style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(20rem, 1fr))', gridAutoRows: '20rem' }}
       >
-        <li className='card p-4 break-words cursor-pointer' onClick={handleNewNote}>
-          <button onClick={handleNewNote}>New Note</button>
-        </li>
+          <Link to='new' className='card'>New Note</Link>
         {notes?.map((note) => (
           <Note key={note.id} note={note} />
         ))}

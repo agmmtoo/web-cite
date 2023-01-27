@@ -6,11 +6,18 @@ export default function Note({ note }) {
   return (
     <Link
       to={`${note.key}`}
-      className={classNames('leading-relaxed tracking-wide hover:shadow shadow-green-400 card p-4 break-words transition', isActive ? 'shadow' : '')}
+      className={classNames(
+        'overflow-hidden leading-relaxed tracking-wide hover:shadow shadow-green-400 card p-4 break-words transition',
+        isActive ? 'shadow' : '',
+        // TODO: predicate to determine big note
+        note.key % 2 === 0 ? 'md:col-span-2 row-span-2 md:row-span-1' : ''
+      )}
     >
-      <h4 className='font-medium'>{note.title}</h4>
-      <small>{note.url}</small>
-      <p>{note.content}</p>
+      <div>
+        <h4 className='font-medium'>{note.title}</h4>
+        <small>{note.url}</small>
+        <p className='overflow-hidden'>{note.content}</p>
+      </div>
     </Link>
   )
 }
