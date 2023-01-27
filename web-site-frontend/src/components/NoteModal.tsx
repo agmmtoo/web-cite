@@ -51,8 +51,18 @@ export default function NoteModal({
   const navigate = useNavigate()
   const goBack = () => navigate('..')
 
+  // handle form close
+  const handleClose = () => {
+    const isEdited = formRef.current.values !== initialValues
+    if (submitOnClose && isEdited ) {
+      onSubmit(formRef.current.values)
+    } else {
+      goBack()
+    }
+  }
+
   return (
-    <Modal open={open} onClose={submitOnClose ? () => onSubmit(formRef.current.values) : onClose}>
+    <Modal open={open} onClose={handleClose}>
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit} innerRef={formRef}>
         {({ handleChange }) => (
           <Form className='flex flex-col gap-4'>
