@@ -31,18 +31,20 @@ function Notes() {
   const navigate = useNavigate()
 
   return (
-    <div className='p-4'>
+    <>
       <ul
-        className='grid gap-4 grid-flow-row-dense'
+        className='p-4 grid gap-8 md:gap-12 grid-flow-row-dense'
         style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(20rem, 1fr))', gridAutoRows: '20rem' }}
       >
-          <Link to='new' className='card'>New Note</Link>
+        <Link to='new' className='card'>
+          New Note
+        </Link>
         {notes?.map((note) => (
           <Note key={note.id} note={note} />
         ))}
       </ul>
       <Outlet />
-    </div>
+    </>
   )
 }
 

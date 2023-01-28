@@ -1,8 +1,29 @@
+import { useEffect, useRef } from 'react'
 import { NavLink } from 'react-router-dom'
 
 function Nav() {
+  const navRef = useRef<HTMLElement>(null)
+  useEffect(() => {
+    const nav = navRef.current
+    let lastScrollTop = 0
+    const handleScorll = () => {
+      const st = window.pageYOffset || document.documentElement.scrollTop
+      if (st > lastScrollTop) {
+        nav?.classList.add('-translate-y-20')
+      } else if (st < lastScrollTop) {
+        nav?.classList.remove('-translate-y-20')
+      }
+      lastScrollTop = st <= 0 ? 0 : st
+    }
+    window.addEventListener('scroll', handleScorll)
+    return () => window.removeEventListener('scroll', handleScorll)
+  }, [])
+
   return (
-    <nav className='w-full box-border px-2 py-4 flex justify-between items-center sticky top-0 border-b backdrop-blur'>
+    <nav
+      ref={navRef}
+      className='w-full transition box-border px-2 py-4 flex justify-between items-center sticky top-0 border-b backdrop-blur'
+    >
       <div className='font-bold text-2xl md:text-4xl bg-clip-text text-transparent bg-gradient-to-r from-emerald-500 to-green-500'>
         <NavLink to='/'>WebCite</NavLink>
       </div>
