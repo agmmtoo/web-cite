@@ -27,11 +27,9 @@ export default function NoteModal({
   
   // effect to set the height of the textarea
   useLayoutEffect(() => {
-    setHeight()
+    setHeight(inputRef?.current)
   }, [])
-  const setHeight = () => {
-    const elem = inputRef.current
-    // IMPROVE: render on every change
+  const setHeight = (elem: HTMLElement) => {
     if (elem) elem.style.height = elem.scrollHeight + 'px'
   }
 
@@ -75,7 +73,7 @@ export default function NoteModal({
               as='textarea'
               innerRef={inputRef}
               onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                setHeight()
+                setHeight(e.currentTarget)
                 handleChange(e)
               }}
               className='p-0 border-none focus:ring-0 resize-none bg-inherit'
