@@ -22,7 +22,7 @@ function Nav() {
   return (
     <nav
       ref={navRef}
-      className='w-full bg-slate-50 transition box-border px-2 py-4 flex justify-between items-center sticky top-0 border-b backdrop-blur'
+      className='z-10 w-full bg-slate-50 transition delay-150 duration-200 box-border px-2 py-4 flex justify-between items-center sticky top-0 border-b backdrop-blur'
     >
       <div className='font-bold text-2xl md:text-4xl bg-clip-text text-transparent bg-gradient-to-r from-emerald-500 to-green-500'>
         <NavLink to='/'>WebCite</NavLink>
