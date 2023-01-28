@@ -8,7 +8,7 @@ export default function Note({ note }) {
     <Link
       to={`${note.key}`}
       className={classNames(
-        'tile card leading-relaxed tracking-wide active:bg-green-100 hover:shadow-md break-words transition',
+        'tilt card leading-relaxed tracking-wide active:bg-green-100 hover:shadow-md break-words transition',
         isActive ? 'bg-green-100' : '',
         largeContentClassname(note.content)
       )}

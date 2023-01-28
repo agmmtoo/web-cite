@@ -14,8 +14,8 @@ export default function TiltCard({ children }) {
     const x = (100 / rect.width) * (e.clientX - rect.left)
     const y = (100 / rect.height) * (e.clientY - rect.top)
     setPoint({ x, y })
-    // ref.current.style.setProperty('--mouse-x', x + 'deg')
-    // ref.current.style.setProperty('--mouse-y', y + 'deg')
+    ref.current.style.setProperty('--mouse-x', x + 'deg')
+    ref.current.style.setProperty('--mouse-y', y + 'deg')
 
     // TODO: extract into hook
   }

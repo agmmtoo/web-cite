@@ -1,5 +1,5 @@
 .tilt {
-  /* transform: perspective(1000px) rotateX(var(--mouse-x, 0deg)) rotateY(var(--mouse-y, 0deg)) scaleZ(1); */
+  transform: perspective(1000px) rotateX(var(--mouse-x, 0deg)) rotateY(var(--mouse-y, 0deg)) scaleZ(1);
   transform-style: preserve-3d;
   transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
