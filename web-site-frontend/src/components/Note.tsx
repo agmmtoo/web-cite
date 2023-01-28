@@ -9,16 +9,20 @@ export default function Note({ note }) {
   const isActive = useMatch(`${note.key}`)
   // "style" can be used directly
   // externall class can be used for the sake of element's cleaness
-  const { elemRef, style } = useTilt()
+  const { elemRef, style, handleMouseMove, handleMouseLeave } = useTilt()
   return (
     <Link
       style={style}
       ref={elemRef}
       to={`${note.key}`}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
       className={classNames(
-        'tilt card leading-relaxed tracking-wide active:bg-green-100 hover:border-green-400 hover:shadow-md break-words transition-colors',
+        'card leading-relaxed tracking-wide active:bg-green-100 hover:border-green-400 hover:shadow-md break-words transition-colors',
         isActive ? 'bg-green-100' : '',
-        largeContentClassname(note.content)
+        largeContentClassname(note.content),
+        // tile classes,
+        // 'tilt'
       )}
     >
       <h4 className='font-medium'>{note.title}</h4>
