@@ -1,4 +1,5 @@
 import { Link, useMatch } from 'react-router-dom'
+import TiltCard from './common/TiltCard'
 import classNames from '../utils/classNames'
 
 export default function Note({ note }) {
@@ -7,16 +8,16 @@ export default function Note({ note }) {
     <Link
       to={`${note.key}`}
       className={classNames(
-        'leading-relaxed tracking-wide active:bg-green-100 hover:bg-green-100 shadow-green-100 card p-4 break-words transition',
-        isActive ? 'bg-green-100 shadow-md' : '',
+        'tile card leading-relaxed tracking-wide active:bg-green-100 hover:shadow-md break-words transition',
+        isActive ? 'bg-green-100' : '',
         largeContentClassname(note.content)
       )}
     >
-      <div>
+      <TiltCard>
         <h4 className='font-medium'>{note.title}</h4>
         <small>{note.url}</small>
         <p className='overflow-hidden'>{largeContent(note.content)}</p>
-      </div>
+      </TiltCard>
     </Link>
   )
 }
