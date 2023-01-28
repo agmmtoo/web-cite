@@ -2,9 +2,11 @@ import { useEffect, useState } from 'react'
 import { useNavigate, Outlet, Link } from 'react-router-dom'
 
 import { getNotes } from '../api/notes.api'
+import { subscribeInsert } from '../api/notes.realtime'
 import { useSession } from '../context/SessionContext'
 import { useClipboard } from '../hooks/useClipboard'
 import Note from '../components/Note'
+import supabase from '../api/supabase.api'
 
 function Notes() {
   const {
@@ -14,10 +16,25 @@ function Notes() {
   } = useSession()
   const [notes, setNotes] = useState([])
 
+  const [insertChan, setInsertChan] = useState(null)
+
   useEffect(() => {
     getNotes(id).then((res) => {
       setNotes(res)
     })
+  }, [])
+
+  useEffect(() => {
+    const onInsert = (payload) => {
+      setNotes((notes) => [payload.new, ...notes])
+    }
+    if (!insertChan) {
+      setInsertChan(subscribeInsert(onInsert))
+    }
+
+    return () => {
+      insertChan?.unsubscribe()
+    }
   }, [])
 
   const { data } = useClipboard()
