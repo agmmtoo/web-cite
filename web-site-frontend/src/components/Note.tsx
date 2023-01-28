@@ -3,20 +3,20 @@ import { Link, useMatch } from 'react-router-dom'
 import classNames from '../utils/classNames'
 import useTilt from '../hooks/useTilt'
 
-import './Note.css'
+// import './Note.css'
 
 export default function Note({ note }) {
   const isActive = useMatch(`${note.key}`)
   // "style" can be used directly
-  // but externall class is used in favour of element's cleaness
+  // externall class can be used for the sake of element's cleaness
   const { elemRef, style } = useTilt()
   return (
     <Link
-      // style={style}
+      style={style}
       ref={elemRef}
       to={`${note.key}`}
       className={classNames(
-        'tilt card leading-relaxed tracking-wide active:bg-green-100 hover:border-green-400 hover:shadow-md break-words transition',
+        'tilt card leading-relaxed tracking-wide active:bg-green-100 hover:border-green-400 hover:shadow-md break-words transition-colors',
         isActive ? 'bg-green-100' : '',
         largeContentClassname(note.content)
       )}

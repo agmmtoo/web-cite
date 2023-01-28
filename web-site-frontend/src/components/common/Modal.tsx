@@ -6,7 +6,7 @@ export default function Modal({ open, onClose, title = '', description = '', chi
     <Transition appear show={open} as={Fragment}>
       <Dialog open={open} onClose={onClose}>
         <div className='fixed inset-0 bg-black/10' />
-        <div className='fixed inset-0 overflow-y-scroll'>
+        <div className='z-20 fixed inset-0 overflow-y-scroll'>
           <div className='grid min-h-full place-items-center'>
             <Transition.Child
               as={Fragment}
