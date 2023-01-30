@@ -1,6 +1,7 @@
 import supabase from './supabase.api'
+import { Note } from '../types/notes.types'
 
-export const getNotes = async (userId: string) => {
+export const getNotes = async (userId: string): Promise<Note[]> => {
   const { error, data } = await supabase
     .from('notes')
     .select()
