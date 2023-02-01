@@ -3,4 +3,6 @@ export const SB_ANON_KEY =
 
 export const SB_URL = 'https://gekeqpbacputqfisbpcf.supabase.co'
 
+export const SB_REALTIME_URL = 'wss://gekeqpbacputqfisbpcf.supabase.co/realtime/v1'
+
 export const SB_LOCAL_STORAGE_KEY = 'sb-gekeqpbacputqfisbpcf-auth-token'
