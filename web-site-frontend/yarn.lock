@@ -433,6 +433,14 @@
     "@types/phoenix" "^1.5.4"
     websocket "^1.0.34"
 
+"@supabase/realtime-js@^2.6.0":
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/@supabase/realtime-js/-/realtime-js-2.6.0.tgz#eff000c2fd9f5cd8d59f4adf6d76165b81ebd536"
+  integrity sha512-tOVulMobhpxyDuu8VIImpL8FXmZOKsGNOSyS5ihJdj2xYmPPvYG+D2J51Ewfl+MFF65tweiB6p9N9bNIW1cDNA==
+  dependencies:
+    "@types/phoenix" "^1.5.4"
+    websocket "^1.0.34"
+
 "@supabase/storage-js@^2.1.0":
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/@supabase/storage-js/-/storage-js-2.2.0.tgz#f579788a79c5d76592fae1ce5ae45f1ec40ae9b6"

@@ -1,16 +1,26 @@
-import { RealtimePostgresInsertPayload, RealtimePostgresDeletePayload } from '@supabase/supabase-js'
 import supabase from './supabase.api'
+
+import { RealtimePostgresChangesPayload } from '@supabase/realtime-js'
 import { Note } from '../types/notes.types'
 
-export const subscribeInsert = (onInsert: (payload: RealtimePostgresInsertPayload<Note>) => void) => {
-  return supabase
-    .channel('any')
-    .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'notes' }, onInsert)
-    .subscribe()
+export interface SubscribeNotesConfig {
+  key: keyof Note
+  value: string
 }
 
-export const subscribeDelete = (onDelete: (payload: RealtimePostgresDeletePayload<Note>) => void) =>
+export type NotesChangeListener = (payload: RealtimePostgresChangesPayload<Note>) => void
+
+export const subscribeNotes = (onNotesChanges: NotesChangeListener, config: SubscribeNotesConfig | null) =>
   supabase
     .channel('any')
-    .on('postgres_changes', { event: 'DELETE', schema: 'public', table: 'notes' }, onDelete)
+    .on(
+      'postgres_changes',
+      {
+        event: '*',
+        schema: 'public',
+        table: 'notes',
+        ...(config && { filter: `${config.key}=eq.${config.value}` }),
+      },
+      onNotesChanges
+    )
     .subscribe()
