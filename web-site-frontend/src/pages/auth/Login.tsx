@@ -14,16 +14,22 @@ export default function Login() {
   })
 
   const handleSubmit = async ({ email }, { setSubmitting }) => {
-    setSubmitting(true)
-    const { user } = await signInWithOtp({
-      email,
-      options: {
-        emailRedirectTo: `${BASE_URL}`,
-      },
-    })
-    alert(JSON.stringify(user))
-    setSubmitting(false)
-    setSuccess(true)
+    try {
+      setSubmitting(true)
+
+      await signInWithOtp({
+        email,
+        options: {
+          emailRedirectTo: `${BASE_URL}`,
+        },
+      })
+
+      setSuccess(true)
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
