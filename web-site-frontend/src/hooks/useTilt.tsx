@@ -42,9 +42,9 @@ export default function useTilt() {
     const relativeXPercent = (100 / rect.width) * relativeX
     const relativeYPercent = (100 / rect.height) * relativeY
     // from center and limit
-    const limit = 10
+    const limit = 15
     const x = (relativeXPercent - 50) / limit
-    const y = (relativeYPercent - 50) / limit
+    const y = - (relativeYPercent - 50) / limit
 
     // set element level css properties
     // elem.style.setProperty('--mouse-x', x + 'deg')
