@@ -7,6 +7,7 @@ import { Modal } from './common'
 import { updateNote, deleteNote } from '../api/notes.api'
 
 import { Note } from '../types/notes.types'
+import NoteModal from './NoteModal'
 
 export default function ReadNoe() {
   const note = useLoaderData() as Note
@@ -29,17 +30,15 @@ export default function ReadNoe() {
 
   return (
     <>
-        <Modal open={true} onClose={handleClose} initialValues={note} submitOnClose={true}>
-          {/* <IconButton type='button' onClick={onDelete}>
+      <NoteModal open={true} onSubmit={console.log} onClose={handleClose} initialValues={note} submitOnClose={true}>
+        {/* <IconButton type='button' onClick={onDelete}>
         <TrashIcon className='hover:text-red-600' />
       </IconButton> */}
-          <div className='w-full h-full flex flex-col justify-center items-center'>
-            <Link to='edit'>Edit</Link>
-          </div>
-          {
-            !m && <Outlet />
-          }
-        </Modal>
+        <div className='w-full h-full flex flex-col justify-center items-center'>
+          <Link to='edit'>Edit</Link>
+        </div>
+        {!m && <Outlet />}
+      </NoteModal>
     </>
   )
 }
